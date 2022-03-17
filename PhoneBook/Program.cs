@@ -23,6 +23,18 @@ namespace PhoneBook
             phoneBook.Add(new Contact("Сергей", "Брин", 799900000013, "serg@example.com"));
             phoneBook.Add(new Contact("Иннокентий", "Смоктуновский", 799900000013, "innokentii@example.com"));
 
+            // Чтение запиской книжки по страницам
+            ReadBook(phoneBook);
+
+            Console.ReadKey();
+        }
+
+        /// <summary>
+        /// Чтение запиской книжки по страницам
+        /// </summary>
+        /// <param name="contacts">Список контактов</param>
+        static void ReadBook(List<Contact> contacts)
+        {
             while (true)
             {
                 // Читаем введенный с консоли символ
@@ -43,7 +55,7 @@ namespace PhoneBook
                 {
                     // пропускаем нужное количество элементов и берем 2 для показа на странице
                     // сортируем по имени, а затем по фамилии.
-                    var pageContent = phoneBook.OrderBy(s => s.Name).ThenBy(f => f.LastName).Skip((pageNumber - 1) * 2).Take(2);
+                    var pageContent = contacts.OrderBy(s => s.Name).ThenBy(f => f.LastName).Skip((pageNumber - 1) * 2).Take(2);
                     Console.WriteLine();
 
                     // выводим результат
@@ -53,9 +65,6 @@ namespace PhoneBook
                     Console.WriteLine();
                 }
             }
-
-
-            Console.ReadKey();
         }
     }
 }
